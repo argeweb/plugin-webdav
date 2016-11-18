@@ -7,13 +7,16 @@
 # Date: 2016/8/27
 
 from google.appengine.ext import webapp
+from google.appengine.api import namespace_manager
+from base64 import b64decode
+import traceback
+import logging
 import cgi
 import sys
-import traceback
-from base64 import b64decode
-import logging
-from webdav_handler import WebDAVHandler
+import os
+from argeweb.core.settings import get_host_information_item
 from plugins.application_user import get_user
+from webdav_handler import WebDAVHandler
 
 
 class WebDAVApplication(object):
@@ -57,16 +60,21 @@ class WebDAVApplication(object):
 
             if scheme == 'Basic':
                 return b64decode(base64_raw).split(':')
-
         return (None, None)
 
     def handle_request(self, environ, request, response):
         """ authentication user."""
-
+        from argeweb.core import settings
         (username, password) = self.get_credentials(request)
+        host, namespace, theme = settings.get_host_information_item()
+        namespace_manager.set_namespace(namespace)
         user = get_user(username, password)
         if user is None:
+            logging.info('if user is None:')
             return self.request_authentication(response)
+        if "webdav" not in str(host.plugins).split(","):
+            logging.info('if "webdav" not in str(host.plugins).split(","):')
+            return response.set_status(404, "Not Found")
 
         method = environ['REQUEST_METHOD']
 

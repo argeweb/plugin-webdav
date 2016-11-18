@@ -24,29 +24,18 @@ class WebdavResourceData(ndb.Model):
 
 
 class WebdavModel(BasicModel):
-    class Meta:
-        label_name = {
-            "path": u"路徑",
-            "content_type": u"類型",
-            "name": u"名稱",
-            "display_name": u"名稱",
-            "parent_resource": u"所屬目錄",
-            "content_length": u"檔案大小",
-            "etag": u"etag",
-            "data": u"檔案實體",
-        }
-    name = Fields.StringProperty()
-    title = Fields.StringProperty()
-    path = Fields.StringProperty()
-    parent_resource = Fields.CategoryProperty(kind=selfReferentialModel)
-    is_collection = Fields.BooleanProperty(default=False)
+    name = Fields.StringProperty(verbose_name=u"名稱")
+    title = Fields.StringProperty(verbose_name=u"標題")
+    path = Fields.StringProperty(verbose_name=u"檔案路徑")
+    content_length = Fields.IntegerProperty(verbose_name=u"檔案類型")
+    content_type = Fields.StringProperty(verbose_name=u"檔案大小")
+    parent_resource = Fields.CategoryProperty(kind=selfReferentialModel, verbose_name=u"所屬目錄")
+    is_collection = Fields.BooleanProperty(default=False, verbose_name=u"是否為目錄")
     created = Fields.DateTimeProperty(auto_now_add=True)
     modified = Fields.DateTimeProperty(auto_now=True)
     content_language = Fields.StringProperty()
-    content_length = Fields.IntegerProperty()
-    content_type = Fields.StringProperty()
-    etag = Fields.StringProperty()
-    resource_data = Fields.CategoryProperty(kind=WebdavResourceData)
+    etag = Fields.StringProperty(verbose_name=u"etag")
+    resource_data = Fields.CategoryProperty(kind=WebdavResourceData, verbose_name=u"檔案實體")
 
     @property
     def children(self):

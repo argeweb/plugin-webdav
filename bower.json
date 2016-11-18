@@ -13,6 +13,7 @@
     "bower_components"
   ],
   "dependencies": {
-    "application_user": "argeweb/plugin-application-user"
+    "application_user": "argeweb/plugin-application-user",
+    "file": "argeweb/plugin-file"
   }
 }
