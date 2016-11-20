@@ -211,6 +211,8 @@ UNLOCK。移除資源的鎖定。使用 Lock-Token: 標頭。
 
         logging.info("Creating resource at %s" % path)
         data = FileDataModel(blob=self.request.body)
+        data.title = path
+        data.name = path
         data.put()
 
         resource = Resource()
