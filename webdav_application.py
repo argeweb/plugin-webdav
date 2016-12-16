@@ -72,9 +72,9 @@ class WebDAVApplication(object):
         if user is None:
             logging.info('if user is None:')
             return self.request_authentication(response)
-        if "webdav" not in str(host.plugins).split(","):
+        if 'webdav' not in str(host.plugins).split(','):
             logging.info('if "webdav" not in str(host.plugins).split(","):')
-            return response.set_status(404, "Not Found")
+            return response.set_status(404, 'Not Found')
 
         method = environ['REQUEST_METHOD']
 

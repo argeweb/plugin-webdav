@@ -34,27 +34,27 @@ LOCK。為資源增加鎖定。使用 Lock-Token: 標頭。
 UNLOCK。移除資源的鎖定。使用 Lock-Token: 標頭。
     """
     __status__ = {
-        "201": "Created",
-        "204": "No Content",
-        "207": "Multi-Status",
-        "403": "Forbidden",
-        "404": "Not Found",
-        "405": "Method Not Allowed",
-        "409": "Conflict",
-        "412": "Precondition Failed",
+        '201': 'Created',
+        '204': 'No Content',
+        '207': 'Multi-Status',
+        '403': 'Forbidden',
+        '404': 'Not Found',
+        '405': 'Method Not Allowed',
+        '409': 'Conflict',
+        '412': 'Precondition Failed',
     }
 
     def set_status(self, code):
         code = str(code)
         if code not in self.__status__:
-            code = "404"
+            code = '404'
         return self.response.set_status(int(code), self.__status__[code])
 
     def initialize(self, request, response):
         self.host, self.namespace, self.theme = get_host_information_item()
         namespace_manager.set_namespace(self.namespace)
         super(WebDAVHandler, self).initialize(request, response)
-        self.request_path = "%s" % self.url_to_path(self.request.path) if request else ""
+        self.request_path = '%s' % self.url_to_path(self.request.path) if request else ''
 
     def set_prefix(self, prefix):
         # normalize
@@ -128,7 +128,7 @@ UNLOCK。移除資源的鎖定。使用 Lock-Token: 標頭。
         else:
             parent = Resource.root()
 
-        logging.info("Creating dir at %s" % path)
+        logging.info('Creating dir at %s' % path)
         collection = Resource()
         collection.path = path
         collection.parent_resource = parent.key
@@ -199,17 +199,17 @@ UNLOCK。移除資源的鎖定。使用 Lock-Token: 標頭。
             existing_resource.delete_recursive()
 
         # fetch parent
-        logging.info("path : %s" % path)
-        logging.info("parent_path : %s" % parent_path)
+        logging.info('path : %s' % path)
+        logging.info('parent_path : %s' % parent_path)
         if parent_path:
             parent = Resource.get_by_path(parent_path)
-            logging.info("parent : %s" % parent)
+            logging.info('parent : %s' % parent)
             if not parent or not parent.is_collection:
                 return self.set_status(409) # must create parent folder first
         else:
             parent = Resource.root()
 
-        logging.info("Creating resource at %s" % path)
+        logging.info('Creating resource at %s' % path)
         data = FileDataModel(blob=self.request.body)
         data.title = path
         data.name = path

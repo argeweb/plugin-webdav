@@ -15,11 +15,11 @@ from plugins.file.models.file_model import FileModel
 class Webdav(Controller):
     class Meta:
         components = (scaffold.Scaffolding, Pagination, Search)
-        pagination_actions = ("list",)
+        pagination_actions = ('list',)
         pagination_limit = 50
         Model = FileModel
 
     class Scaffold:
-        display_properties_in_list = ("title", "path", "content_type", "content_length")
-        hidden_properties_in_edit = ("resource_data")
+        display_properties_in_list = ('title', 'path', 'content_type', 'content_length')
+        hidden_properties_in_edit = ('resource_data')
 
