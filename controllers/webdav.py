@@ -20,6 +20,6 @@ class Webdav(Controller):
         Model = FileModel
 
     class Scaffold:
-        display_properties_in_list = ('title', 'path', 'content_type', 'content_length')
-        hidden_properties_in_edit = ('resource_data')
+        display_in_list = ('title', 'path', 'content_type', 'content_length')
+        hidden_in_form = ('resource_data')
 

@@ -4,8 +4,7 @@
 # Created with YooLiang Technology (侑良科技).
 # Author: Qi-Liang Wen (温啓良）
 # Web: http://www.yooliang.com/
-# Date: 2015/7/12.
-from argeweb import datastore
+# Date: 2017/01/07.
 
 plugins_helper = {
     'title': u'Webdav',
