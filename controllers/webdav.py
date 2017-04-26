@@ -15,8 +15,6 @@ from plugins.file.models.file_model import FileModel
 class Webdav(Controller):
     class Meta:
         components = (scaffold.Scaffolding, Pagination, Search)
-        pagination_actions = ('list',)
-        pagination_limit = 50
         Model = FileModel
 
     class Scaffold:
