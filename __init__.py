@@ -10,25 +10,15 @@ plugins_helper = {
     'title': u'Webdav',
     'desc': u'UserFile With WebDAV Server',
     'controllers': {
-        'user_file': {
-            'group': u'使用者檔案',
+        'webdav': {
+            'group': u'Webdav',
             'actions': [
-                {'action': 'list', 'name': u'使用者檔案'},
+                {'action': 'list', 'name': u'Webdav'},
                 {'action': 'add', 'name': u'新增使用者檔案'},
                 {'action': 'edit', 'name': u'編輯使用者檔案'},
                 {'action': 'view', 'name': u'檢視使用者檔案'},
                 {'action': 'delete', 'name': u'刪除使用者檔案'},
                 {'action': 'plugins_check', 'name': u'啟用停用模組'},
-            ]
-        },
-        'user_file_category': {
-            'group': u'使用者檔案分類',
-            'actions': [
-                {'action': 'list', 'name': u'使用者檔案分類'},
-                {'action': 'add', 'name': u'新增使用者檔案分類'},
-                {'action': 'edit', 'name': u'編輯使用者檔案分類'},
-                {'action': 'view', 'name': u'檢視使用者檔案分類'},
-                {'action': 'delete', 'name': u'刪除使用者檔案分類'},
             ]
         }
     }
