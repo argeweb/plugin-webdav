@@ -14,7 +14,6 @@ from plugins.file.models.file_model import FileModel
 
 class Webdav(Controller):
     class Meta:
-        components = (scaffold.Scaffolding, Pagination, Search)
         Model = FileModel
 
     class Scaffold:
