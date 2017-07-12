@@ -1,0 +1,11 @@
+- kind: WebdavModel
+  properties:
+  - name: parent_resource
+  - name: sort
+    direction: desc
+
+- kind: WebdavModel
+  properties:
+  - name: path
+  - name: sort
+    direction: desc
