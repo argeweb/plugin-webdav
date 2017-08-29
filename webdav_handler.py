@@ -51,7 +51,7 @@ UNLOCK。移除資源的鎖定。使用 Lock-Token: 標頭。
         return self.response.set_status(int(code), self.__status__[code])
 
     def initialize(self, request, response):
-        self.host, self.namespace, self.theme = get_host_information_item()
+        self.host, self.namespace, self.theme, self.server_name = get_host_information_item()
         namespace_manager.set_namespace(self.namespace)
         super(WebDAVHandler, self).initialize(request, response)
         self.request_path = '%s' % self.url_to_path(self.request.path) if request else ''
@@ -188,6 +188,7 @@ UNLOCK。移除資源的鎖定。使用 Lock-Token: 標頭。
         self.set_status(204 if existing_resource else 201)
 
     def put(self):
+        # type: () -> object
         """Uploads a file."""
         path = self.request_path
         parent_path = os.path.dirname(path)

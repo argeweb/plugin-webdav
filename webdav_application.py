@@ -66,13 +66,13 @@ class WebDAVApplication(object):
         """ authentication user."""
         from argeweb.core import settings
         (username, password) = self.get_credentials(request)
-        host, namespace, theme = settings.get_host_information_item()
+        host_information, namespace, theme, server_name = settings.get_host_information_item()
         namespace_manager.set_namespace(namespace)
         user = get_user(username, password)
         if user is None:
             logging.info('if user is None:')
             return self.request_authentication(response)
-        if 'webdav' not in str(host.plugins).split(','):
+        if 'webdav' not in str(host_information.plugins).split(','):
             logging.info('if "webdav" not in str(host.plugins).split(","):')
             return response.set_status(404, 'Not Found')
 
